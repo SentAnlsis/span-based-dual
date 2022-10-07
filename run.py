@@ -1,6 +1,5 @@
 import os
 import argparse
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 import torch
 import torch.nn.functional as F
 from models.data_BIO_loader import load_data, DataTterator
@@ -9,7 +8,7 @@ from models.Metric import Metric
 import tqdm
 from transformers import AdamW, BertModel
 from thop import profile, clever_format
-
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3,4,5,6,7'
 
 def train(args):
     if args.dataset_path == './datasets/BIO_form/':
