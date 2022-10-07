@@ -9,6 +9,8 @@ import tqdm
 from transformers import AdamW, BertModel
 from thop import profile, clever_format
 #os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3,4,5,6,7'
+USE_CUDA = torch.cuda.is_available()
+device = torch.device("cuda:0" if USE_CUDA else "cpu")
 
 def train(args):
     if args.dataset_path == './datasets/BIO_form/':
@@ -329,7 +331,7 @@ def main():
                         help='model path prefix')
     parser.add_argument('--mode', type=str, default="test", choices=["train", "test"],
                         help='option: train, test')
-    parser.add_argument('--device', type=str, default="cuda", choices=["0"],
+    parser.add_argument('--device', type=str, default="cuda",
                         help='gpu or cpu')
     parser.add_argument("--RANDOM_SEED", type=int, default=41,
                         help="")
