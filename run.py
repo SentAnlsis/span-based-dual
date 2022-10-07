@@ -169,7 +169,7 @@ def train(args):
 
     print("Features build completed")
     print("Evaluation on testset:")
-    model_path = args.model_dir + args.dataset+'_'+str(best_triple_f1) + '.pt'
+    model_path = args.model_dir + args.dataset+'_'+str(global best_triple_f1) + '.pt'
     # model_path = args.model_dir +args.dataset +'_'+ str(0.6345381526104418) + '.pt'
     state = torch.load(model_path)
     Bert.load_state_dict(state['bert_model'])
