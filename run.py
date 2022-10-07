@@ -52,7 +52,8 @@ def train(args):
         Bert = torch.nn.DataParallel(Bert)
         aspect_model = torch.nn.DataParallel(aspect_model)
         opinion_model = torch.nn.DataParallel(opinion_model)
-
+        
+    best_aspect_f1, best_opinion_f1, best_APCE_f1, best_pairs_f1, best_triple_f1 = 0,0,0,0,0
     if args.mode == 'train':
         print('-------------------------------')
         print('开始加载训练与验证集')
@@ -67,7 +68,7 @@ def train(args):
             os.makedirs(args.model_dir)
 
         tot_loss = 0
-        best_aspect_f1, best_opinion_f1, best_APCE_f1, best_pairs_f1, best_triple_f1 = 0,0,0,0,0
+        #best_aspect_f1, best_opinion_f1, best_APCE_f1, best_pairs_f1, best_triple_f1 = 0,0,0,0,0
         best_aspect_epoch, best_opinion_epoch, best_APCE_epoch, best_pairs_epoch, best_triple_epoch= 0,0,0,0,0
         for i in range(args.epochs):
             print('Epoch:{}'.format(i))
@@ -169,7 +170,7 @@ def train(args):
 
     print("Features build completed")
     print("Evaluation on testset:")
-    model_path = args.model_dir + args.dataset+'_'+str(global best_triple_f1) + '.pt'
+    model_path = args.model_dir + args.dataset+'_'+str(best_triple_f1) + '.pt'
     # model_path = args.model_dir +args.dataset +'_'+ str(0.6345381526104418) + '.pt'
     state = torch.load(model_path)
     Bert.load_state_dict(state['bert_model'])
