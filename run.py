@@ -351,9 +351,9 @@ def main():
 
     parser.add_argument("--dataset_path", default="./datasets/ASTE-Data-V2-EMNLP2020/", choices=["./datasets/BIO_form/", "./datasets/ASTE-Data-V2-EMNLP2020/"],
                         help="")
-    parser.add_argument("--init_model", default="pretrained_models/bert-base-uncased", type=str, required=False,
+    parser.add_argument("--init_model", default="bert-base-uncased/blob/main/", type=str, required=False,
                         help="Initial model.")
-    parser.add_argument("--init_vocab", default="pretrained_models/bert-base-uncased", type=str, required=False,
+    parser.add_argument("--init_vocab", default="bert-base-uncased/blob/main/", type=str, required=False,
                         help="Initial vocab.")
     parser.add_argument('--epochs', type=int, default=150,
                         help='training epoch number')
