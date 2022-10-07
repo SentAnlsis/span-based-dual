@@ -193,7 +193,7 @@ def eval(bert_model, aspect_model, opinion_model, dataset, args):
             spans_aspect_tensor, spans_opinion_label_tensor, sentence_length = dataset.get_batch(j)
 
             if j ==0:
-                bert_model.to(device)
+                bert_model.to("cuda")
                 flop_bert, para_bert = profile(bert_model, inputs=(tokens_tensor, attention_mask,), custom_ops={})
                 macs, param = clever_format([flop_bert, para_bert], "%.3f")
                 print("BERT MACs: ", macs, "BERT Params: ", param)
@@ -331,7 +331,7 @@ def main():
                         help='model path prefix')
     parser.add_argument('--mode', type=str, default="test", choices=["train", "test"],
                         help='option: train, test')
-    parser.add_argument('--device', type=str, default="cuda",
+    parser.add_argument('--device', type=str, default="cuda:0",
                         help='gpu or cpu')
     parser.add_argument("--RANDOM_SEED", type=int, default=41,
                         help="")
