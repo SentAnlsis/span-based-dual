@@ -8,7 +8,7 @@ from models.Metric import Metric
 import tqdm
 from transformers import AdamW, BertModel
 from thop import profile, clever_format
-os.environ['CUDA_VISIBLE_DEVICES'] = '5,6,7'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 def train(args):
     if args.dataset_path == './datasets/BIO_form/':
@@ -52,7 +52,7 @@ def train(args):
         Bert = torch.nn.DataParallel(Bert)
         aspect_model = torch.nn.DataParallel(aspect_model)
         opinion_model = torch.nn.DataParallel(opinion_model)
-        
+
     best_aspect_f1, best_opinion_f1, best_APCE_f1, best_pairs_f1, best_triple_f1 = 0,0,0,0,0
     if args.mode == 'train':
         print('-------------------------------')
