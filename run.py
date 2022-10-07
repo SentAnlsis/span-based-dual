@@ -379,7 +379,7 @@ def main():
     parser.add_argument("--learning_rate", type=float, default=1e-5)
     parser.add_argument("--accumulation_steps", type=int, default=1)
     parser.add_argument("--task", type=str, default='triples', choices=['senti', 'triples'])
-    parser.add_argument("--muti_gpu", default=True)
+    parser.add_argument("--muti_gpu", default=False)
     parser.add_argument("--output_path", default='triples.json')
     args = parser.parse_args()
 
