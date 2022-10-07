@@ -329,7 +329,7 @@ def main():
                         help='model path prefix')
     parser.add_argument('--mode', type=str, default="test", choices=["train", "test"],
                         help='option: train, test')
-    parser.add_argument('--device', type=str, default="cuda",
+    parser.add_argument('--device', type=str, default="cuda:0",
                         help='gpu or cpu')
     parser.add_argument("--RANDOM_SEED", type=int, default=41,
                         help="")
