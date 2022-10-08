@@ -192,7 +192,7 @@ def eval(bert_model, aspect_model, opinion_model, dataset, args):
             spans_aspect_tensor, spans_opinion_label_tensor, sentence_length = dataset.get_batch(j)
 
             if j ==0:
-                bert_model.to("cpu")
+                bert_model.to("cuda")
                 flop_bert, para_bert = profile(bert_model, inputs=(tokens_tensor, attention_mask,), custom_ops={})
                 macs, param = clever_format([flop_bert, para_bert], "%.3f")
                 print("BERT MACs: ", macs, "BERT Params: ", param)
